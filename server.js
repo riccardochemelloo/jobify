@@ -6,6 +6,8 @@ dotenv.config();
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import { v2 as cloudinary } from 'cloudinary';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
 
 
 
@@ -54,6 +56,8 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.static(path.resolve(__dirname, './client/dist')));
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
+app.use(mongoSanitize());
 
 
 
